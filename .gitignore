@@ -1,0 +1,41 @@
+# Data files (download via instructions in README)
+data/*.csv
+data/*.xlsx
+data/*.json
+data/*.zip
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+venv/
+env/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model artifacts
+*.pkl
+*.joblib
+models/
+
+# Reports (generated locally)
+reports/*.png
+reports/*.html

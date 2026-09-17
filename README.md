@@ -1,6 +1,6 @@
 # Demand Forecasting
 
-Forecasting daily store-level sales using time series features and gradient-boosted trees, with walk-forward validation to prevent data leakage.
+Forecasting daily store-level sales using time series features and gradient-boosted trees, with a chronological train/test split to prevent data leakage.
 
 ## Results
 
@@ -31,28 +31,29 @@ Demand Forecasting/
     requirements.txt
     .gitignore
     models/
-        forecasting_model.pkl                              # Trained XGBoost model
+        forecasting_model.pkl                                       # Trained XGBoost model (produced by notebook 2)
     notebooks/
-        eda output file.ipynb                              # Exploratory Data Analysis (with outputs)
-        feature engineering and modeling output file.ipynb  # Features + Modeling (with outputs)
+        eda_output_file.ipynb                                       # Exploratory Data Analysis (with outputs)
+        feature_engineering_and_modeling_output_file.ipynb          # Features + Modeling (with outputs)
 ```
 
 ## Notebooks
 
-### 1. EDA (`eda output file.ipynb`)
+### 1. EDA (`eda_output_file.ipynb`)
 
 - Time series overview (daily, weekly, monthly patterns)
 - Stationarity test (ADF)
 - STL decomposition (trend + seasonal + residual)
 - Promotion and holiday impact analysis
 - Store type and assortment comparisons
+- Competition distance effect
 
-### 2. Features + Modeling (`feature engineering and modeling output file.ipynb`)
+### 2. Features + Modeling (`feature_engineering_and_modeling_output_file.ipynb`)
 
 - Lag features (1, 7, 14, 28 days) with leakage prevention
 - Rolling window statistics (7-day, 28-day mean/std)
 - Holiday proximity and competition features
-- Walk-forward train/test split (final 6 weeks held out)
+- Chronological train/test split (final 6 weeks held out as a single time-based holdout)
 - 4 models: Naive, SARIMA, LightGBM, XGBoost
 - Store-level error analysis
 - Business translation (promo lift, day-of-week patterns)
@@ -63,8 +64,8 @@ Demand Forecasting/
 
 ## Tech Stack
 
-Python, pandas, scikit-learn, LightGBM, XGBoost, statsmodels (SARIMA), matplotlib, seaborn
+Python, pandas, LightGBM, XGBoost, statsmodels (ADF test, STL, SARIMA), matplotlib, seaborn
 
 ## How to Run
 
-Upload the notebooks to [Kaggle](https://www.kaggle.com) with the dataset linked above, and run cells in order. Notebook 2 reads engineered features saved by its own earlier cells.
+Upload the notebooks to [Kaggle](https://www.kaggle.com) with the dataset linked above, and run cells in order. Each notebook is self-contained: notebook 2 loads and re-engineers features from the raw `train.csv`/`store.csv` files itself rather than depending on saved output from notebook 1.
